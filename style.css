@@ -25,9 +25,12 @@ body {
 .sidebar {
   width: var(--sidebar-w);
   flex-shrink: 0;
-  height: 100vh;
+  min-height: 100vh;
   border-right: 1px solid var(--border);
   padding: 28px 20px;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
 }
 
 .sidebar-name {
@@ -73,7 +76,7 @@ body {
 
 .main {
   flex: 1;
-  height: 100vh;
+  min-height: 100vh;
   padding: 28px 40px;
 }
 
@@ -87,10 +90,65 @@ body {
 .main p {
   color: var(--muted);
   line-height: 1.6;
-  max-width: 520px;
+  max-width: 560px;
+}
+
+.main .lede {
+  color: var(--text);
+}
+
+.main h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 32px 0 12px;
 }
 
 .notice {
   font-size: 13px;
   color: var(--muted);
+}
+
+.demo {
+  display: block;
+  max-width: 280px;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 13px;
+  max-width: 560px;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 16px 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+pre {
+  background: #fafafa;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  overflow-x: auto;
+  max-width: 560px;
+}
+
+pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+  white-space: pre;
 }
