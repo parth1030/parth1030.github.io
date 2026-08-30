@@ -24,7 +24,7 @@
       <h1>Veritas</h1>
       <h2>Brief Overview</h2>
       <p>Veritas is a minimalistic Chrome extension that fact-checks YouTube videos in real time.</p>
-      <ul>
+      <ul class="bullets">
         <li><strong>Live caption streaming</strong> — The extension watches YouTube's closed captions and streams them to a FastAPI backend over WebSocket.</li>
         <li><strong>Claim extraction</strong> — Gemma receives the transcript along with video metadata (title, channel, date, description) and extracts standalone, check-worthy factual claims.</li>
         <li><strong>Retrieval-augmented fact-checking</strong> — Each claim is sent to a Fetch.ai uAgent that first checks a semantic vector cache (Gemini embeddings + cosine similarity), and on a miss gathers evidence from Wikipedia and Google Fact Check Tools, then asks Gemma for a verdict (true, false, misleading, or needs_context) with confidence, rationale, and citations.</li>
@@ -33,18 +33,19 @@
       </ul>
 
 
-      <iframe
-          src="https://www.youtube.com/embed/CuinBraRAlk"
-          title="Demo"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-      </iframe>
+      <div class="video-wrap">
+        <iframe
+            src="https://www.youtube.com/embed/CuinBraRAlk"
+            title="Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+      </div>
 
       
 
       <h2>How it Works</h2>
-      <ul>
+      <ul class="bullets">
         <li><strong>Chrome Extension</strong> (Manifest V3, vanilla JS) — A content script observes YouTube caption DOM mutations and streams finalized cues to the backend. A background service worker manages WebSocket connections. The overlay UI is injected directly into the page.</li>
         <li><strong>FastAPI Backend</strong> — WebSocket endpoints ingest captions. A per-session orchestrator buffers transcript, extracts claims via Gemma, and dispatches them to the fact-check agent with rate-limit backoff.</li>
         <li><strong>Fetch.ai uAgent</strong> — Registered on Agentverse with automated mailbox provisioning. Handles the full RAG pipeline: embed → cache lookup → evidence retrieval → LLM verdict → cache write-back. The backend communicates with it directly via RulesBasedResolver.</li>
@@ -53,7 +54,7 @@
       </ul>
 
       <h2>Tech Stack</h2>
-      <ul>
+      <ul class="bullets">
         <li><strong>Frontend</strong> — Chrome Extension (Manifest V3), vanilla JavaScript, custom CSS</li>
         <li><strong>Backend</strong> — Python, FastAPI, Uvicorn, Pydantic</li>
         <li><strong>AI/ML</strong> — Google Gemma 3 27B IT, Gemini Embeddings</li>
